@@ -25,6 +25,8 @@
 - name: Generate Server keys
   command: "{{openvpn_etcdir}}/build-server.sh"
   args: { creates: "{{ openvpn_keydir }}" }
+  async: 3600
+  poll: 30
 
 - name: Generate tls-auth key
   command: openvpn --genkey --secret {{ openvpn_tls_key }}
